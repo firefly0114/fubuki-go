@@ -1,6 +1,7 @@
 package log
 
 import (
+	"fubuki-go/cmd"
 	"log"
 
 	"go.uber.org/zap"
@@ -26,7 +27,7 @@ var (
 )
 
 func init() {
-	initLogger(false)
+	initLogger(cmd.Debug)
 }
 
 func initLogger(debug bool) {
@@ -49,8 +50,4 @@ func initLogger(debug bool) {
 	Warn = zap.L().Warn
 	Error = zap.L().Error
 	Fatal = zap.L().Fatal
-}
-
-func SetDebugMode() {
-	initLogger(true)
 }
