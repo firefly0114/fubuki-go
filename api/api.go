@@ -1,6 +1,9 @@
 package api
 
 import (
+	"fmt"
+	"fubuki-go/cmd"
+	"strconv"
 	"time"
 
 	ginzap "github.com/gin-contrib/zap"
@@ -15,6 +18,7 @@ func init() {
 	app.Use(ginzap.RecoveryWithZap(zap.L(), true))
 }
 
-func Run() {
-	app.Run()
+func Run() error {
+	err := app.Run(":" + strconv.Itoa(cmd.ApiListingPort))
+	return fmt.Errorf("api server exited, %w", err)
 }
